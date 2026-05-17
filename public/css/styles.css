@@ -885,7 +885,7 @@ a:hover {
 }
 
 .about-copy > p {
-  color: var(--cream-muted);
+  color: var(--section-muted);
 }
 
 .about-origin {
