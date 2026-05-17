@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
+  <div class="page-grain" aria-hidden="true"></div>
+  <div class="page-glass page-glass--left" aria-hidden="true"></div>
+  <div class="page-glass page-glass--right" aria-hidden="true"></div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -21,6 +25,7 @@
       </button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#music">Music</a></li>
+        <li><a href="#watch">Watch</a></li>
         <li><a href="#voice">The Voice</a></li>
         <li><a href="#about">Story</a></li>
         <li><a href="#tour">Tour</a></li>
@@ -33,6 +38,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-glass-arch" aria-hidden="true"></div>
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Nashville · Singer-Songwriter · Country</p>
@@ -42,6 +48,7 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#listen">Listen Now</a>
+            <a class="btn btn-ghost" href="#watch">Watch</a>
             <a class="btn btn-ghost" href="#tour">Tour Dates</a>
           </div>
           <ul class="hero-badges" aria-label="Highlights">
@@ -50,14 +57,15 @@
             <li>Nashville, TN</li>
           </ul>
         </div>
-        <figure class="hero-visual">
+        <figure class="hero-visual arch-frame">
           <img src="/images/live-performance.png" alt="<%= site.artist.name %> performing live with microphone" width="900" height="1100" fetchpriority="high" />
           <figcaption class="sr-only">Live performance photograph</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="as-seen" aria-label="As seen on">
+    <section class="as-seen section--light" aria-label="As seen on">
+      <div class="stained-divider stained-divider--top" aria-hidden="true"></div>
       <div class="container as-seen-inner">
         <span class="label">As Seen On</span>
         <p class="as-seen-text">NBC's <strong>The Voice</strong> · Season 26 · Team Reba</p>
@@ -89,6 +97,53 @@
       </div>
     </section>
 
+    <section class="section watch" id="watch" aria-labelledby="watch-heading">
+      <div class="stained-rose" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-header section-header--center">
+          <span class="label">Performances</span>
+          <h2 id="watch-heading">Watch &amp; Listen</h2>
+          <p>From worship-rooted blind auditions to soul-baring country moments — see the performances that started it all.</p>
+        </header>
+        <ul class="video-grid">
+          <% site.videos.forEach(function(video) { %>
+          <li class="video-card">
+            <div class="video-frame arch-frame">
+              <% if (video.platform === 'youtube') { %>
+              <iframe
+                title="<%= video.title %>"
+                src="https://www.youtube.com/embed/<%= video.id %>?rel=0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+              <% } %>
+            </div>
+            <div class="video-caption">
+              <h3><%= video.title %></h3>
+              <p><%= video.subtitle %></p>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+        <% if (site.tiktokEmbeds && site.tiktokEmbeds.length) { %>
+        <div class="tiktok-block">
+          <h3 class="tiktok-heading">On TikTok</h3>
+          <ul class="tiktok-grid">
+            <% site.tiktokEmbeds.forEach(function(tt) { %>
+            <li>
+              <blockquote class="tiktok-embed" cite="<%= tt.url %>" data-video-id="<%= tt.url.split('/').pop() %>" style="max-width:100%;min-width:325px;">
+                <section><a href="<%= tt.url %>" target="_blank" rel="noopener noreferrer"><%= tt.title %></a></section>
+              </blockquote>
+            </li>
+            <% }); %>
+          </ul>
+          <a class="btn btn-ghost tiktok-follow" href="<%= site.social.tiktok %>" target="_blank" rel="noopener noreferrer">Follow @laurenmichaelsellers</a>
+        </div>
+        <% } %>
+      </div>
+    </section>
+
     <section class="section voice" id="voice" aria-labelledby="voice-heading">
       <div class="container voice-grid">
         <figure class="voice-visual">
@@ -115,9 +170,10 @@
       </div>
     </section>
 
-    <section class="section about" id="about" aria-labelledby="about-heading">
+    <section class="section about section--light" id="about" aria-labelledby="about-heading">
+      <div class="stained-divider stained-divider--top" aria-hidden="true"></div>
       <div class="container about-grid">
-        <figure class="about-portrait">
+        <figure class="about-portrait arch-frame">
           <img src="/images/hero-portrait.png" alt="Portrait of <%= site.artist.name %>" width="600" height="750" loading="lazy" />
         </figure>
         <div class="about-copy">
@@ -128,7 +184,7 @@
             From very early on, she has honed her craft as a multi-instrumentalist and storyteller, using real-life experiences 
             to craft powerful melodies and lyrics.
           </p>
-          <blockquote>
+          <blockquote class="glass-quote">
             <p>
               Music provides me a safe space, giving a voice to all those heavy thoughts and feelings left unsaid, and the means 
               to navigate through all the uncertainty, loss, and heartbreak that comes from being a trauma survivor. Like anyone else, 
@@ -247,5 +303,6 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>

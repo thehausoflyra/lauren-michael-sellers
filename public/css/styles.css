@@ -1,15 +1,23 @@
 /* Lauren-Michael Sellers — brand palette */
 :root {
-  --ink: #14110f;
-  --ink-soft: #2a2420;
+  --ink: #12101a;
+  --ink-soft: #1e1a28;
+  --ink-warm: #1a1512;
   --cream: #f4efe6;
   --cream-muted: #d9d0c4;
+  --cream-dark: #2c2620;
   --ember: #c44b2a;
   --ember-glow: #e86a3f;
   --burgundy: #6e2a2a;
   --gold: #c9a227;
   --denim: #4a6278;
   --white: #ffffff;
+  /* Stained-glass gospel nod — sapphire, amethyst, amber */
+  --glass-sapphire: rgba(58, 95, 168, 0.22);
+  --glass-amethyst: rgba(110, 62, 140, 0.2);
+  --glass-amber: rgba(201, 162, 39, 0.18);
+  --glass-ruby: rgba(196, 75, 42, 0.15);
+  --glass-lead: rgba(244, 239, 230, 0.12);
   --shadow: 0 24px 60px rgba(20, 17, 15, 0.35);
   --radius: 4px;
   --radius-lg: 12px;
@@ -35,8 +43,56 @@ body {
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--cream);
-  background: var(--ink);
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, var(--glass-amethyst), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, var(--glass-sapphire), transparent 45%),
+    linear-gradient(175deg, #16121f 0%, var(--ink) 40%, #0f0d12 100%);
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Film grain + global texture */
+.page-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtle stained-glass side washes */
+.page-glass {
+  pointer-events: none;
+  position: fixed;
+  top: 10%;
+  width: min(42vw, 520px);
+  height: 70vh;
+  z-index: 0;
+  opacity: 0.55;
+  background: url("/images/stained-glass-pattern.svg") center / 120px repeat;
+  color: var(--gold);
+  mask-image: linear-gradient(90deg, black, transparent 85%);
+  -webkit-mask-image: linear-gradient(90deg, black, transparent 85%);
+}
+
+.page-glass--left {
+  left: -8%;
+  background-color: var(--glass-sapphire);
+  background-blend-mode: soft-light;
+}
+
+.page-glass--right {
+  right: -8%;
+  transform: scaleX(-1);
+  background-color: var(--glass-amethyst);
+  background-blend-mode: soft-light;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -193,10 +249,36 @@ a:hover {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(196, 75, 42, 0.18), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(201, 162, 39, 0.08), transparent 50%),
-    linear-gradient(160deg, #1a1614 0%, #0f0d0c 100%);
+    radial-gradient(ellipse 70% 55% at 75% 35%, var(--glass-ruby), transparent 50%),
+    radial-gradient(ellipse 45% 40% at 15% 70%, var(--glass-amber), transparent 45%),
+    radial-gradient(ellipse 50% 60% at 50% 100%, var(--glass-sapphire), transparent 55%),
+    linear-gradient(160deg, #1a1520 0%, #0f0d12 100%);
   z-index: 0;
+}
+
+.hero-glass-arch {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 680px);
+  height: min(50vh, 420px);
+  z-index: 0;
+  opacity: 0.35;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  background:
+    conic-gradient(
+      from 200deg at 50% 100%,
+      var(--glass-sapphire) 0deg,
+      var(--glass-amethyst) 72deg,
+      var(--glass-amber) 144deg,
+      var(--glass-ruby) 216deg,
+      var(--glass-sapphire) 288deg,
+      var(--glass-amethyst) 360deg
+    );
+  mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, black 20%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, black 20%, transparent 72%);
+  filter: blur(1px);
 }
 
 .hero-grid {
@@ -335,10 +417,92 @@ a:hover {
   aspect-ratio: 4 / 5;
 }
 
+/* Arch frame — chapel window nod */
+.arch-frame {
+  position: relative;
+}
+
+.arch-frame::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 2px;
+  background: linear-gradient(
+    160deg,
+    var(--gold) 0%,
+    var(--glass-lead) 25%,
+    var(--ember) 50%,
+    var(--glass-lead) 75%,
+    rgba(58, 95, 168, 0.6) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.arch-frame img,
+.arch-frame iframe {
+  border-radius: var(--radius-lg);
+}
+
+/* Light sections — break up the brown */
+.section--light {
+  --section-text: var(--cream-dark);
+  --section-muted: #5c5348;
+  color: var(--section-text);
+  background:
+    linear-gradient(180deg, #f8f4ec 0%, #efe8dc 50%, #e8e0d2 100%);
+  position: relative;
+}
+
+.section--light .label {
+  color: var(--burgundy);
+}
+
+.section--light h2,
+.section--light h3,
+.section--light .as-seen-text strong {
+  color: var(--section-text);
+}
+
+.section--light p,
+.section--light .as-seen-text {
+  color: var(--section-muted);
+}
+
+.section--light a:not(.btn) {
+  color: var(--ember);
+}
+
+.stained-divider {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glass-sapphire) 15%,
+    var(--gold) 35%,
+    var(--ember) 50%,
+    var(--glass-amethyst) 65%,
+    var(--glass-sapphire) 85%,
+    transparent
+  );
+  opacity: 0.7;
+  box-shadow: 0 1px 0 var(--glass-lead);
+}
+
+.stained-divider--top {
+  margin-bottom: 0;
+}
+
 /* As seen on */
 .as-seen {
-  border-block: 1px solid rgba(244, 239, 230, 0.08);
-  background: var(--ink-soft);
+  border-block: 1px solid rgba(44, 38, 32, 0.08);
+  padding-block: 1.5rem;
 }
 
 .as-seen-inner {
@@ -381,7 +545,8 @@ a:hover {
 .section-header h2,
 .voice-copy h2,
 .about-copy h2,
-.listen-copy h2 {
+.listen-copy h2,
+#watch-heading {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 600;
@@ -397,7 +562,10 @@ a:hover {
 
 /* Music */
 .music {
-  background: linear-gradient(180deg, var(--ink) 0%, #1c1815 100%);
+  background:
+    url("/images/stained-glass-pattern.svg") center / 200px repeat,
+    linear-gradient(180deg, rgba(18, 16, 26, 0.97) 0%, rgba(26, 22, 32, 0.98) 100%);
+  background-blend-mode: overlay, normal;
 }
 
 .release-grid {
@@ -410,11 +578,13 @@ a:hover {
 }
 
 .release-card {
-  background: var(--ink-soft);
-  border: 1px solid rgba(244, 239, 230, 0.06);
+  background: rgba(30, 26, 40, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(244, 239, 230, 0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.3s var(--ease), border-color 0.3s;
+  transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .release-card:hover {
@@ -463,9 +633,125 @@ a:hover {
   content: " →";
 }
 
+/* Watch / video */
+.watch {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(165deg, #14101c 0%, #1a1520 50%, #120f18 100%);
+}
+
+.stained-rose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 640px);
+  height: min(90vw, 640px);
+  pointer-events: none;
+  opacity: 0.12;
+  background:
+    radial-gradient(circle at center, var(--glass-amber) 0%, transparent 42%),
+    url("/images/stained-glass-pattern.svg") center / 100px repeat;
+  color: var(--gold);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  list-style: none;
+  margin: 0 0 3.5rem;
+  padding: 0;
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(244, 239, 230, 0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px var(--glass-ruby);
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0a090c;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-frame.arch-frame::before {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.video-caption {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.video-caption h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0 0 0.35rem;
+  color: var(--cream);
+}
+
+.video-caption p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+}
+
+.tiktok-block {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(244, 239, 230, 0.08);
+}
+
+.tiktok-heading {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--cream);
+  margin: 0 0 1.5rem;
+}
+
+.tiktok-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  justify-items: center;
+}
+
+.tiktok-grid li {
+  width: 100%;
+  max-width: 360px;
+}
+
+.tiktok-follow {
+  margin-inline: auto;
+}
+
 /* The Voice */
 .voice {
-  background: var(--ink-soft);
+  background:
+    linear-gradient(135deg, rgba(58, 95, 168, 0.08) 0%, transparent 40%),
+    linear-gradient(225deg, rgba(110, 62, 140, 0.06) 0%, transparent 40%),
+    var(--ink-soft);
 }
 
 .voice-grid {
@@ -534,7 +820,7 @@ a:hover {
 
 /* About */
 .about {
-  background: var(--ink);
+  padding-top: 0;
 }
 
 .about-grid {
@@ -556,21 +842,42 @@ a:hover {
   background: var(--cream);
 }
 
-.about-copy blockquote {
+.glass-quote {
   margin: 1.75rem 0;
-  padding: 1.5rem 1.75rem;
-  background: rgba(196, 75, 42, 0.08);
-  border-left: 3px solid var(--ember);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.75rem 2rem;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(58, 95, 168, 0.06), rgba(201, 162, 39, 0.05));
+  border: 1px solid rgba(44, 38, 32, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 60px rgba(201, 162, 39, 0.06);
 }
 
-.about-copy blockquote p {
+.glass-quote::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--glass-sapphire),
+    var(--gold),
+    var(--ember),
+    var(--glass-amethyst)
+  );
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0.8;
+}
+
+.glass-quote p {
   margin: 0 0 1rem;
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-style: italic;
   line-height: 1.7;
-  color: var(--cream-muted);
+  color: var(--section-muted);
 }
 
 .about-copy blockquote p:last-child {
@@ -583,12 +890,15 @@ a:hover {
 
 .about-origin {
   font-size: 0.95rem;
-  color: var(--gold) !important;
+  color: var(--burgundy) !important;
 }
 
 /* Tour */
 .tour {
-  background: linear-gradient(180deg, #1c1815 0%, var(--ink-soft) 100%);
+  background:
+    url("/images/stained-glass-pattern.svg") center / 280px repeat,
+    linear-gradient(180deg, #1a1620 0%, var(--ink-soft) 100%);
+  background-blend-mode: soft-light, normal;
 }
 
 .tour-note {
@@ -658,7 +968,19 @@ a:hover {
 
 /* Listen */
 .listen {
-  background: var(--ink);
+  background: linear-gradient(180deg, var(--ink) 0%, #18141f 100%);
+}
+
+.listen .spotify-embed {
+  position: relative;
+  padding: 4px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: linear-gradient(
+    135deg,
+    rgba(58, 95, 168, 0.4),
+    rgba(201, 162, 39, 0.35),
+    rgba(196, 75, 42, 0.35)
+  );
 }
 
 .listen-grid {
@@ -680,7 +1002,9 @@ a:hover {
 
 /* Connect */
 .connect {
-  background: var(--ink-soft);
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, var(--glass-ruby), transparent 60%),
+    var(--ink-soft);
   padding-bottom: 6rem;
 }
 
@@ -763,12 +1087,31 @@ a:hover {
   letter-spacing: 0.1em;
 }
 
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Mobile nav */
 @media (max-width: 900px) {
+  .page-glass {
+    opacity: 0.25;
+    width: 60vw;
+  }
+
   .hero-grid,
   .voice-grid,
   .about-grid,
-  .listen-grid {
+  .listen-grid,
+  .video-grid,
+  .tiktok-grid {
     grid-template-columns: 1fr;
   }
 

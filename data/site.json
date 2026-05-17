@@ -10,6 +10,30 @@
     "facebook": "https://facebook.com/laurenmichaelseller",
     "tiktok": "https://www.tiktok.com/@laurenmichaelsellers"
   },
+  "videos": [
+    {
+      "platform": "youtube",
+      "id": "sFl0aLQMpg4",
+      "title": "Blind Audition — “Oceans (Where Feet May Fail)”",
+      "subtitle": "The Voice Season 26 · 4-chair turn"
+    },
+    {
+      "platform": "youtube",
+      "id": "Mx0ad6X90GM",
+      "title": "Playoffs — “I Am Not Okay”",
+      "subtitle": "The Voice · Team Reba"
+    }
+  ],
+  "tiktokEmbeds": [
+    {
+      "url": "https://www.tiktok.com/@laurenmichaelsellers/video/7593170677465713934",
+      "title": "From @laurenmichaelsellers"
+    },
+    {
+      "url": "https://www.tiktok.com/@nbcthevoice/video/7438792986940493098",
+      "title": "The Voice — “Hold On To Me”"
+    }
+  ],
   "releases": [
     {
       "title": "This Is Hell",
