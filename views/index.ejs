@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="<%= site.artist.name %> — Nashville country artist, Team Reba on NBC's The Voice Season 26. Listen to originals, covers, and tour dates." />
+  <title><%= site.artist.name %> | Official Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Main">
+      <a class="nav-logo" href="#top"><%= site.artist.name %></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#music">Music</a></li>
+        <li><a href="#voice">The Voice</a></li>
+        <li><a href="#about">Story</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a class="nav-cta" href="#connect">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Nashville · Singer-Songwriter · Country</p>
+          <h1 id="hero-heading"><%= site.artist.name %></h1>
+          <p class="hero-lead">
+            Emotionally resonant originals and raw, authentic covers from a Team Reba standout on <em>The Voice</em> Season 26.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#listen">Listen Now</a>
+            <a class="btn btn-ghost" href="#tour">Tour Dates</a>
+          </div>
+          <ul class="hero-badges" aria-label="Highlights">
+            <li>Team Reba</li>
+            <li>The Voice S26</li>
+            <li>Nashville, TN</li>
+          </ul>
+        </div>
+        <figure class="hero-visual">
+          <img src="/images/live-performance.png" alt="<%= site.artist.name %> performing live with microphone" width="900" height="1100" fetchpriority="high" />
+          <figcaption class="sr-only">Live performance photograph</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="as-seen" aria-label="As seen on">
+      <div class="container as-seen-inner">
+        <span class="label">As Seen On</span>
+        <p class="as-seen-text">NBC's <strong>The Voice</strong> · Season 26 · Team Reba</p>
+      </div>
+    </section>
+
+    <section class="section music" id="music" aria-labelledby="music-heading">
+      <div class="container">
+        <header class="section-header">
+          <span class="label">Discography</span>
+          <h2 id="music-heading">Music &amp; Releases</h2>
+          <p>Traditional country storytelling meets contemporary singer-songwriter pop — recorded in Nashville.</p>
+        </header>
+        <ul class="release-grid">
+          <% site.releases.forEach(function(release) { %>
+          <li class="release-card">
+            <div class="release-image">
+              <img src="<%= release.image %>" alt="" loading="lazy" />
+            </div>
+            <div class="release-body">
+              <span class="release-type"><%= release.type %><% if (release.year) { %> · <%= release.year %><% } %></span>
+              <h3><%= release.title %></h3>
+              <p><%= release.description %></p>
+              <a class="link-arrow" href="<%= release.spotifyUrl %>" target="_blank" rel="noopener noreferrer">Listen on Spotify</a>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section voice" id="voice" aria-labelledby="voice-heading">
+      <div class="container voice-grid">
+        <figure class="voice-visual">
+          <img src="/images/voice-reba.png" alt="<%= site.artist.name %> on The Voice with coach Reba McEntire" width="800" height="600" loading="lazy" />
+        </figure>
+        <div class="voice-copy">
+          <span class="label">The Voice · Season 26</span>
+          <h2 id="voice-heading">Team Reba</h2>
+          <p>
+            <%= site.artist.name %> gained national prominence as a standout artist on NBC's <em>The Voice</em>, 
+            drawing from a challenging upbringing to deliver performances celebrated for emotional depth and vocal range.
+          </p>
+          <ul class="highlight-list">
+            <% site.voiceHighlights.forEach(function(h) { %>
+            <li>
+              <strong><%= h.round %></strong>
+              <span class="highlight-song">“<%= h.song %>”</span>
+              <span class="highlight-artist"><%= h.artist %></span>
+              <p><%= h.note %></p>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <figure class="about-portrait">
+          <img src="/images/hero-portrait.png" alt="Portrait of <%= site.artist.name %>" width="600" height="750" loading="lazy" />
+        </figure>
+        <div class="about-copy">
+          <span class="label">Her Story</span>
+          <h2 id="about-heading">Singer · Songwriter · Storyteller</h2>
+          <p>
+            Originally from the Birmingham and Atlanta areas, <%= site.artist.name %> now creates and records out of Nashville. 
+            From very early on, she has honed her craft as a multi-instrumentalist and storyteller, using real-life experiences 
+            to craft powerful melodies and lyrics.
+          </p>
+          <blockquote>
+            <p>
+              Music provides me a safe space, giving a voice to all those heavy thoughts and feelings left unsaid, and the means 
+              to navigate through all the uncertainty, loss, and heartbreak that comes from being a trauma survivor. Like anyone else, 
+              I've had my share of regrets, but I choose to see them as the lessons that have shaped me into the artist I am today.
+            </p>
+            <p>
+              Each note I sing carries the weight and vulnerability of my experiences, both good and bad, making my music an 
+              authentic reflection of my journey. My artistry is simple — to touch the hearts of as many people as possible through 
+              the honesty of my music, to inspire and connect with others on a deeply emotional level.
+            </p>
+          </blockquote>
+          <p class="about-origin">
+            <strong>Roots:</strong> Birmingham / Atlanta → <strong>Home base:</strong> Nashville, TN
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tour" id="tour" aria-labelledby="tour-heading">
+      <div class="container">
+        <header class="section-header">
+          <span class="label">On the Road</span>
+          <h2 id="tour-heading">Tour Dates</h2>
+          <p>Catch <%= site.artist.name.split(' ')[0] %> live — from Nashville to the Southeast and beyond.</p>
+        </header>
+        <% if (site.tourNote) { %>
+        <p class="tour-note" role="note"><%= site.tourNote %></p>
+        <% } %>
+        <ol class="tour-list">
+          <% site.tourDates.forEach(function(show) { %>
+          <li class="tour-item">
+            <time datetime="<%= show.date %>"><%= show.displayDate %></time>
+            <div class="tour-venue">
+              <strong><%= show.venue %></strong>
+              <span><%= show.city %>, <%= show.state %></span>
+            </div>
+            <% if (show.ticketUrl) { %>
+            <a class="btn btn-small" href="<%= show.ticketUrl %>" target="_blank" rel="noopener noreferrer">Tickets</a>
+            <% } else { %>
+            <span class="tour-status"><%= show.status === 'soldout' ? 'Sold Out' : 'Announced' %></span>
+            <% } %>
+          </li>
+          <% }); %>
+        </ol>
+        <p class="tour-contact">
+          Booking inquiries: <a href="mailto:booking@laurenmichaelsellers.com">booking@laurenmichaelsellers.com</a>
+          <span class="muted">(update with your real contact)</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section listen" id="listen" aria-labelledby="listen-heading">
+      <div class="container listen-grid">
+        <div class="listen-copy">
+          <span class="label">Stream</span>
+          <h2 id="listen-heading">Listen on Spotify</h2>
+          <p>Stream singles, originals, and covers — including “This Is Hell,” “Slow Dance,” and more.</p>
+          <a class="btn btn-primary" href="https://open.spotify.com/artist/<%= site.artist.spotifyArtistId %>" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
+        </div>
+        <div class="spotify-embed">
+          <iframe
+            title="Spotify — <%= site.artist.name %>"
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/artist/<%= site.artist.spotifyArtistId %>?utm_source=generator"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section connect" id="connect" aria-labelledby="connect-heading">
+      <div class="container connect-inner">
+        <header class="section-header section-header--center">
+          <span class="label">Stay Close</span>
+          <h2 id="connect-heading">Follow the Journey</h2>
+          <p>New music, behind-the-scenes moments, and tour updates.</p>
+        </header>
+        <ul class="social-grid">
+          <li>
+            <a href="<%= site.social.instagram %>" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">Instagram</span>
+              <span class="social-handle">@laurenmichaelsellers</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= site.social.tiktok %>" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">TikTok</span>
+              <span class="social-handle">@laurenmichaelsellers</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= site.social.facebook %>" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">Facebook</span>
+              <span class="social-handle">laurenmichaelseller</span>
+            </a>
+          </li>
+        </ul>
+        <figure class="connect-visual">
+          <img src="/images/performance-voice.png" alt="<%= site.artist.name %> performing on stage" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <%= new Date().getFullYear() %> <%= site.artist.name %>. All rights reserved.</p>
+      <p class="footer-location"><%= site.artist.location %></p>
+      <a class="footer-top" href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "artist": {
+    "name": "Lauren-Michael Sellers",
+    "tagline": "Nashville singer-songwriter · Team Reba · The Voice Season 26",
+    "location": "Nashville, TN",
+    "spotifyArtistId": "6hAenNlARdfhIsPSamrmfc"
+  },
+  "social": {
+    "instagram": "https://instagram.com/laurenmichaelsellers",
+    "facebook": "https://facebook.com/laurenmichaelseller",
+    "tiktok": "https://www.tiktok.com/@laurenmichaelsellers"
+  },
+  "releases": [
+    {
+      "title": "This Is Hell",
+      "type": "Single",
+      "year": "2025",
+      "description": "Latest original single — raw, honest storytelling from the heart of Nashville.",
+      "spotifyUrl": "https://open.spotify.com/artist/6hAenNlARdfhIsPSamrmfc",
+      "image": "/images/live-performance.png"
+    },
+    {
+      "title": "Slow Dance",
+      "type": "Original",
+      "year": "",
+      "description": "An intimate original that blends contemporary singer-songwriter pop with classic country warmth.",
+      "spotifyUrl": "https://open.spotify.com/artist/6hAenNlARdfhIsPSamrmfc",
+      "image": "/images/hero-portrait.png"
+    },
+    {
+      "title": "Hold On To Me",
+      "type": "Cover",
+      "year": "",
+      "description": "Emotionally resonant cover showcasing her vocal range and connection to vulnerable storytelling.",
+      "spotifyUrl": "https://open.spotify.com/artist/6hAenNlARdfhIsPSamrmfc",
+      "image": "/images/take-me-back.png"
+    },
+    {
+      "title": "Take Me Back",
+      "type": "Collaboration",
+      "year": "",
+      "description": "With Song House — a warm, authentic country release rooted in Nashville storytelling.",
+      "spotifyUrl": "https://open.spotify.com/artist/6hAenNlARdfhIsPSamrmfc",
+      "image": "/images/take-me-back.png"
+    }
+  ],
+  "voiceHighlights": [
+    {
+      "round": "Blind Audition",
+      "song": "Oceans (Where Feet May Fail)",
+      "artist": "Hillsong United",
+      "note": "Prompted a massive reaction and showcased her strong background in worship music."
+    },
+    {
+      "round": "Playoffs",
+      "song": "I Am Not Okay",
+      "artist": "Jelly Roll",
+      "note": "Earned widespread praise for connecting with vulnerable, storytelling country music."
+    }
+  ],
+  "tourDates": [
+    {
+      "date": "2026-06-14",
+      "displayDate": "Sat, Jun 14, 2026",
+      "venue": "The Listening Room Cafe",
+      "city": "Nashville",
+      "state": "TN",
+      "ticketUrl": "",
+      "status": "announced"
+    },
+    {
+      "date": "2026-07-19",
+      "displayDate": "Sun, Jul 19, 2026",
+      "venue": "Smith's Olde Bar",
+      "city": "Atlanta",
+      "state": "GA",
+      "ticketUrl": "",
+      "status": "announced"
+    },
+    {
+      "date": "2026-08-22",
+      "displayDate": "Fri, Aug 22, 2026",
+      "venue": "Iron City",
+      "city": "Birmingham",
+      "state": "AL",
+      "ticketUrl": "",
+      "status": "announced"
+    }
+  ],
+  "tourNote": "Sample dates for layout — replace in data/site.json with confirmed shows."
+}
