@@ -71,11 +71,7 @@
 
     <% if (site.upcomingRelease) { var r = site.upcomingRelease; %>
     <section class="firefighter" id="firefighter" aria-labelledby="firefighter-heading">
-      <div class="firefighter-embers" aria-hidden="true"></div>
       <div class="firefighter-glow" aria-hidden="true"></div>
-      <ul class="firefighter-flame-row" aria-hidden="true">
-        <li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-      </ul>
       <div class="container firefighter-inner">
         <div class="firefighter-copy">
           <span class="label label-fire"><%= r.tagline %></span>
@@ -84,18 +80,20 @@
           <p class="firefighter-desc"><%= r.description %></p>
           <a class="btn btn-fire btn-fire--large" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer">Spotify Pre-Save</a>
         </div>
-        <a class="firefighter-cover-link" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer" aria-label="Pre-save <%= r.title %> on Spotify — opens pre-save page">
-          <figure class="firefighter-cover arch-frame">
-            <% if (r.coverArtUrl) { %>
-            <img src="<%= r.coverArtUrl %>" alt="<%= r.title %> single cover art" width="400" height="400" loading="lazy" onerror="this.onerror=null;this.src='/images/live-performance.png';" />
-            <% } %>
-            <figcaption class="firefighter-cover-cta">Tap to pre-save</figcaption>
+        <a class="firefighter-poster" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer" aria-label="Pre-save <%= r.title %> on Spotify">
+          <figure class="firefighter-poster-card arch-frame">
+            <img
+              src="<%= r.coverArtLocal || '/images/live-performance.png' %>"
+              alt="<%= r.title %> — album art"
+              width="280"
+              height="280"
+              loading="lazy"
+            />
+            <figcaption class="firefighter-poster-label">
+              <span class="firefighter-poster-title"><%= r.title %></span>
+              <span class="firefighter-poster-cta">Pre-save on Spotify →</span>
+            </figcaption>
           </figure>
-          <div class="firefighter-cover-flames" aria-hidden="true">
-            <img src="/images/flames.svg" alt="" class="flame flame--l" />
-            <img src="/images/flames.svg" alt="" class="flame flame--c" />
-            <img src="/images/flames.svg" alt="" class="flame flame--r" />
-          </div>
         </a>
       </div>
     </section>
@@ -121,7 +119,7 @@
           <li class="release-card release-card--featured release-card--fire">
             <div class="release-image">
               <span class="release-soon">Pre-Save</span>
-              <img src="<%= r.coverArtUrl || '/images/live-performance.png' %>" alt="<%= r.title %> cover" loading="lazy" />
+              <img src="<%= r.coverArtLocal || '/images/live-performance.png' %>" alt="<%= r.title %> cover" loading="lazy" />
             </div>
             <div class="release-body">
               <span class="release-type"><%= r.type %> · <%= r.displayDate %></span>

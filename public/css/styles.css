@@ -540,33 +540,6 @@ a:hover {
     linear-gradient(180deg, #1a1218 0%, #140f14 50%, var(--ink) 100%);
 }
 
-.firefighter-embers {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(3px 3px at 15% 85%, var(--flame-core), transparent),
-    radial-gradient(2px 2px at 35% 92%, var(--flame), transparent),
-    radial-gradient(3px 3px at 55% 88%, var(--gold), transparent),
-    radial-gradient(2px 2px at 72% 95%, var(--flame-core), transparent),
-    radial-gradient(2px 2px at 88% 82%, var(--flame), transparent),
-    radial-gradient(4px 4px at 48% 78%, rgba(255, 200, 100, 0.9), transparent);
-  background-size: 100% 100%;
-  opacity: 0.75;
-  animation: ember-drift 12s ease-in-out infinite alternate;
-}
-
-@keyframes ember-drift {
-  0% {
-    opacity: 0.35;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0.55;
-    transform: translateY(-8px);
-  }
-}
-
 .firefighter-glow {
   position: absolute;
   bottom: -20%;
@@ -629,143 +602,59 @@ a:hover {
   margin: 0 0 1.75rem;
 }
 
-/* Bottom flame strip — visible fire */
-.firefighter-flame-row {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(0.25rem, 2vw, 1.25rem);
-  margin: 0;
-  padding: 0 1rem 0;
-  list-style: none;
-  pointer-events: none;
-  height: 100px;
-}
-
-.firefighter-flame-row li {
-  width: clamp(36px, 6vw, 56px);
-  height: clamp(70px, 12vw, 100px);
-  background: url("/images/flames.svg") center bottom / contain no-repeat;
-  transform-origin: center bottom;
-  animation: flame-dance 1.8s ease-in-out infinite;
-  filter: drop-shadow(0 0 12px rgba(255, 120, 40, 0.7));
-}
-
-.firefighter-flame-row li:nth-child(1) { animation-delay: 0s; height: 55%; opacity: 0.7; }
-.firefighter-flame-row li:nth-child(2) { animation-delay: 0.15s; height: 85%; }
-.firefighter-flame-row li:nth-child(3) { animation-delay: 0.3s; height: 100%; }
-.firefighter-flame-row li:nth-child(4) { animation-delay: 0.1s; height: 95%; }
-.firefighter-flame-row li:nth-child(5) { animation-delay: 0.25s; height: 110%; }
-.firefighter-flame-row li:nth-child(6) { animation-delay: 0.05s; height: 80%; }
-.firefighter-flame-row li:nth-child(7) { animation-delay: 0.2s; height: 60%; opacity: 0.75; }
-
-@keyframes flame-dance {
-  0%,
-  100% {
-    transform: scaleY(1) scaleX(1);
-    filter: drop-shadow(0 0 10px rgba(255, 120, 40, 0.6));
-  }
-  50% {
-    transform: scaleY(1.08) scaleX(0.96);
-    filter: drop-shadow(0 0 18px rgba(255, 154, 77, 0.9));
-  }
-}
-
-/* Cover art + side flames (clickable → pre-save) */
-.firefighter-cover-link {
-  position: relative;
+/* Poster — fixed size, warm glow (no SVG flames) */
+.firefighter-poster {
   display: block;
-  justify-self: center;
-  max-width: 320px;
+  justify-self: end;
+  width: min(100%, 280px);
   text-decoration: none;
   transition: transform 0.3s var(--ease);
 }
 
-.firefighter-cover-link:hover {
-  transform: translateY(-6px);
+.firefighter-poster:hover {
+  transform: translateY(-4px);
 }
 
-.firefighter-cover-link:hover .firefighter-cover-cta {
-  opacity: 1;
-}
-
-.firefighter-cover {
+.firefighter-poster-card {
   margin: 0;
-  position: relative;
-  z-index: 2;
-  border-radius: var(--radius-lg);
   overflow: hidden;
+  border-radius: var(--radius-lg);
   box-shadow:
-    0 0 0 2px rgba(255, 154, 77, 0.5),
-    0 16px 50px rgba(184, 50, 24, 0.45),
-    0 0 80px rgba(232, 106, 63, 0.25);
+    0 0 0 1px rgba(255, 154, 77, 0.35),
+    0 12px 40px rgba(184, 50, 24, 0.35);
 }
 
-.firefighter-cover img {
+.firefighter-poster-card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1;
   object-fit: cover;
   display: block;
-  background: #2a1814;
+  vertical-align: middle;
 }
 
-.firefighter-cover-cta {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--white);
-  background: linear-gradient(to top, rgba(20, 10, 8, 0.92), transparent);
-  opacity: 0.85;
-  transition: opacity 0.25s;
-}
-
-.firefighter-cover-flames {
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 90px;
+.firefighter-poster-label {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0.5rem;
-  pointer-events: none;
-  z-index: 3;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(to top, rgba(12, 8, 10, 0.95), rgba(40, 20, 15, 0.85));
+  border-top: 1px solid rgba(255, 154, 77, 0.25);
 }
 
-.firefighter-cover-flames .flame {
-  width: auto;
-  height: 72px;
-  filter: drop-shadow(0 0 14px rgba(255, 100, 30, 0.85));
-  animation: flame-dance 1.6s ease-in-out infinite;
+.firefighter-poster-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--flame-core);
 }
 
-.firefighter-cover-flames .flame--l {
-  height: 56px;
-  animation-delay: 0.2s;
-  opacity: 0.85;
-}
-
-.firefighter-cover-flames .flame--c {
-  height: 88px;
-  animation-delay: 0s;
-}
-
-.firefighter-cover-flames .flame--r {
-  height: 56px;
-  animation-delay: 0.35s;
-  opacity: 0.85;
+.firefighter-poster-cta {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
 }
 
 .release-card--fire {
@@ -1422,10 +1311,10 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .firefighter-cover-link {
+  .firefighter-poster {
     order: -1;
-    max-width: 280px;
-    margin-inline: auto;
+    justify-self: center;
+    width: min(100%, 240px);
   }
 
   .hero-visual {
