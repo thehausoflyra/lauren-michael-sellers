@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="<%= site.artist.name %> — Nashville country artist, Team Reba on NBC's The Voice Season 26. Listen to originals, covers, and tour dates." />
+  <meta name="description" content="<%= site.artist.name %> — Pre-save new single Firefighter (June 26, 2026). Nashville country artist, Team Reba on The Voice Season 26." />
   <title><%= site.artist.name %> | Official Site</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +24,7 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-menu" id="nav-menu">
+        <% if (site.upcomingRelease) { %><li><a href="#firefighter">Pre-Save</a></li><% } %>
         <li><a href="#music">Music</a></li>
         <li><a href="#watch">Watch</a></li>
         <li><a href="#voice">The Voice</a></li>
@@ -47,11 +48,15 @@
             Emotionally resonant originals and raw, authentic covers from a Team Reba standout on <em>The Voice</em> Season 26.
           </p>
           <div class="hero-actions">
+            <% if (site.upcomingRelease) { %>
+            <a class="btn btn-fire" href="#firefighter">Pre-Save “<%= site.upcomingRelease.title %>”</a>
+            <% } %>
             <a class="btn btn-primary" href="#listen">Listen Now</a>
             <a class="btn btn-ghost" href="#watch">Watch</a>
             <a class="btn btn-ghost" href="#tour">Tour Dates</a>
           </div>
           <ul class="hero-badges" aria-label="Highlights">
+            <% if (site.upcomingRelease) { %><li class="badge-fire"><%= site.upcomingRelease.title %> · <%= site.upcomingRelease.displayDate %></li><% } %>
             <li>Team Reba</li>
             <li>The Voice S26</li>
             <li>Nashville, TN</li>
@@ -63,6 +68,27 @@
         </figure>
       </div>
     </section>
+
+    <% if (site.upcomingRelease) { var r = site.upcomingRelease; %>
+    <section class="firefighter" id="firefighter" aria-labelledby="firefighter-heading">
+      <div class="firefighter-embers" aria-hidden="true"></div>
+      <div class="firefighter-glow" aria-hidden="true"></div>
+      <div class="container firefighter-inner">
+        <div class="firefighter-copy">
+          <span class="label label-fire"><%= r.tagline %></span>
+          <h2 id="firefighter-heading"><%= r.title %></h2>
+          <p class="firefighter-date">Out <%= r.displayDate %></p>
+          <p class="firefighter-desc"><%= r.description %></p>
+          <a class="btn btn-fire btn-fire--large" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer">Spotify Pre-Save</a>
+        </div>
+        <div class="firefighter-art" aria-hidden="true">
+          <div class="firefighter-flame-ring">
+            <span class="firefighter-title-display"><%= r.title %></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <% } %>
 
     <section class="as-seen section--light" aria-label="As seen on">
       <div class="stained-divider stained-divider--top" aria-hidden="true"></div>
@@ -80,6 +106,20 @@
           <p>Traditional country storytelling meets contemporary singer-songwriter pop — recorded in Nashville.</p>
         </header>
         <ul class="release-grid">
+          <% if (site.upcomingRelease) { var r = site.upcomingRelease; %>
+          <li class="release-card release-card--featured release-card--fire">
+            <div class="release-image">
+              <span class="release-soon">Pre-Save</span>
+              <img src="/images/live-performance.png" alt="" loading="lazy" />
+            </div>
+            <div class="release-body">
+              <span class="release-type"><%= r.type %> · <%= r.displayDate %></span>
+              <h3><%= r.title %></h3>
+              <p><%= r.description %></p>
+              <a class="link-arrow link-fire" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer">Pre-Save on Spotify</a>
+            </div>
+          </li>
+          <% } %>
           <% site.releases.forEach(function(release) { %>
           <li class="release-card">
             <div class="release-image">
