@@ -527,21 +527,22 @@ a:hover {
   margin-bottom: 0;
 }
 
-/* Upcoming — Firefighter */
+/* Upcoming — Firefighter (mobile-first) */
 .firefighter {
   position: relative;
   overflow: hidden;
-  padding: 4rem 0;
+  padding: 0 0 2.5rem;
   border-block: 1px solid rgba(232, 106, 63, 0.2);
   background: #140f14;
   isolation: isolate;
 }
 
-/* Real fire video — soft background, not dominant */
+/* Mobile: fire strip on top */
 .firefighter-video-wrap {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 0;
+  width: 100%;
+  height: clamp(120px, 34vw, 180px);
   overflow: hidden;
 }
 
@@ -552,16 +553,19 @@ a:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.42;
-  filter: saturate(1.15) contrast(1.05);
+  opacity: 0.9;
+  filter: saturate(1.1) contrast(1.05);
 }
 
 .firefighter-video-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(105deg, rgba(12, 8, 10, 0.92) 0%, rgba(12, 8, 10, 0.55) 45%, rgba(12, 8, 10, 0.75) 100%),
-    linear-gradient(to top, rgba(12, 8, 10, 0.85), transparent 40%);
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 8, 10, 0.1) 0%,
+    rgba(12, 8, 10, 0.65) 70%,
+    rgba(12, 8, 10, 1) 100%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -577,16 +581,8 @@ a:hover {
 }
 
 .firefighter-glow {
-  position: absolute;
-  bottom: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(100%, 720px);
-  height: 60%;
-  background: radial-gradient(ellipse at center, rgba(232, 106, 63, 0.2), transparent 70%);
+  display: none;
   pointer-events: none;
-  z-index: 1;
-  animation: fire-pulse 4s ease-in-out infinite;
 }
 
 @keyframes fire-pulse {
@@ -604,9 +600,17 @@ a:hover {
 .firefighter-inner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.firefighter-copy {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -634,18 +638,91 @@ a:hover {
 }
 
 .firefighter-desc {
-  max-width: 38ch;
+  max-width: 34ch;
   color: var(--cream-muted);
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.5rem;
 }
 
-/* Poster — fixed size, warm glow (no SVG flames) */
+.firefighter .btn-fire--large {
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* Poster */
 .firefighter-poster {
   display: block;
-  justify-self: end;
-  width: min(100%, 280px);
+  width: min(72vw, 260px);
+  margin-inline: auto;
   text-decoration: none;
   transition: transform 0.3s var(--ease);
+}
+
+/* Desktop: full-bleed fire behind side-by-side layout */
+@media (min-width: 769px) {
+  .firefighter {
+    padding: 4rem 0;
+    min-height: min(52vh, 520px);
+  }
+
+  .firefighter-video-wrap {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    width: auto;
+  }
+
+  .firefighter-video {
+    opacity: 0.38;
+    object-position: center;
+  }
+
+  .firefighter-video-overlay {
+    background:
+      linear-gradient(90deg, rgba(12, 8, 10, 0.88) 0%, rgba(12, 8, 10, 0.45) 52%, rgba(12, 8, 10, 0.72) 100%),
+      linear-gradient(to top, rgba(12, 8, 10, 0.5), transparent 35%);
+  }
+
+  .firefighter-glow {
+    display: block;
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, 720px);
+    height: 60%;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(232, 106, 63, 0.2), transparent 70%);
+    animation: fire-pulse 4s ease-in-out infinite;
+  }
+
+  .firefighter-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  .firefighter-copy {
+    align-items: flex-start;
+  }
+
+  .firefighter-desc {
+    max-width: 38ch;
+    margin-bottom: 1.75rem;
+  }
+
+  .firefighter .btn-fire--large {
+    width: auto;
+    max-width: none;
+  }
+
+  .firefighter-poster {
+    justify-self: end;
+    width: min(100%, 300px);
+    margin-inline: 0;
+  }
 }
 
 .firefighter-poster:hover {
@@ -1339,7 +1416,6 @@ a:hover {
   }
 
   .hero-grid,
-  .firefighter-inner,
   .voice-grid,
   .about-grid,
   .listen-grid,
@@ -1436,90 +1512,9 @@ a:hover {
   }
 }
 
-/* Firefighter — mobile layout */
-@media (max-width: 900px) {
-  .firefighter {
-    padding: 0 0 2.75rem;
-  }
-
-  /* Fire as a short top banner, not full-section background */
-  .firefighter-video-wrap {
-    position: relative;
-    inset: auto;
-    height: clamp(140px, 38vw, 200px);
-    width: 100%;
-    z-index: 0;
-  }
-
-  .firefighter-video {
-    opacity: 0.85;
-    object-position: center 40%;
-  }
-
-  .firefighter-video-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(12, 8, 10, 0.15) 0%,
-      rgba(12, 8, 10, 0.55) 55%,
-      rgba(12, 8, 10, 1) 100%
-    );
-  }
-
-  .firefighter-glow {
-    display: none;
-  }
-
-  .firefighter-inner {
-    gap: 1.75rem;
-    padding-top: 1.5rem;
-    text-align: center;
-  }
-
-  .firefighter-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .firefighter h2 {
-    font-size: clamp(2.25rem, 10vw, 3rem);
-  }
-
-  .firefighter-desc {
-    max-width: 32ch;
-    margin-inline: auto;
-    font-size: 1rem;
-  }
-
-  .firefighter .btn-fire--large {
-    width: 100%;
-    max-width: 20rem;
-  }
-
-  .firefighter-poster {
-    justify-self: center;
-    width: min(72vw, 260px);
-    margin-inline: auto;
-  }
-
-  .firefighter-poster-card {
-    box-shadow:
-      0 0 0 1px rgba(255, 154, 77, 0.35),
-      0 8px 28px rgba(184, 50, 24, 0.3);
-  }
-
-  .firefighter-poster-label {
-    text-align: center;
-  }
-}
-
 @media (max-width: 480px) {
   .firefighter-video-wrap {
-    height: 130px;
-  }
-
-  .firefighter-inner {
-    padding-top: 1.25rem;
+    height: 115px;
   }
 
   .hero-actions .btn-fire {
