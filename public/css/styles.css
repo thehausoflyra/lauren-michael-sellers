@@ -527,23 +527,23 @@ a:hover {
   margin-bottom: 0;
 }
 
-/* Upcoming — Firefighter (mobile-first) */
+/* Upcoming — Firefighter */
 .firefighter {
   position: relative;
   overflow: hidden;
-  padding: 0 0 2.5rem;
+  padding: 3rem 0;
   border-block: 1px solid rgba(232, 106, 63, 0.2);
   background: #140f14;
   isolation: isolate;
 }
 
-/* Mobile: fire strip on top */
+/* Fire video = section background (all screen sizes) */
 .firefighter-video-wrap {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 0;
-  width: 100%;
-  height: clamp(120px, 34vw, 180px);
   overflow: hidden;
+  pointer-events: none;
 }
 
 .firefighter-video {
@@ -553,19 +553,20 @@ a:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.9;
+  opacity: 0.45;
   filter: saturate(1.1) contrast(1.05);
 }
 
 .firefighter-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(12, 8, 10, 0.1) 0%,
-    rgba(12, 8, 10, 0.65) 70%,
-    rgba(12, 8, 10, 1) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 8, 10, 0.75) 0%,
+      rgba(12, 8, 10, 0.5) 45%,
+      rgba(12, 8, 10, 0.82) 100%
+    );
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -581,8 +582,16 @@ a:hover {
 }
 
 .firefighter-glow {
-  display: none;
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 720px);
+  height: 55%;
+  z-index: 1;
   pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(232, 106, 63, 0.18), transparent 70%);
+  animation: fire-pulse 4s ease-in-out infinite;
 }
 
 @keyframes fire-pulse {
@@ -657,47 +666,21 @@ a:hover {
   transition: transform 0.3s var(--ease);
 }
 
-/* Desktop: full-bleed fire behind side-by-side layout */
 @media (min-width: 769px) {
   .firefighter {
-    padding: 4rem 0;
-    min-height: min(52vh, 520px);
-  }
-
-  .firefighter-video-wrap {
-    position: absolute;
-    inset: 0;
-    height: auto;
-    width: auto;
-  }
-
-  .firefighter-video {
-    opacity: 0.38;
-    object-position: center;
+    padding: 4.5rem 0;
+    min-height: min(50vh, 500px);
   }
 
   .firefighter-video-overlay {
     background:
-      linear-gradient(90deg, rgba(12, 8, 10, 0.88) 0%, rgba(12, 8, 10, 0.45) 52%, rgba(12, 8, 10, 0.72) 100%),
-      linear-gradient(to top, rgba(12, 8, 10, 0.5), transparent 35%);
-  }
-
-  .firefighter-glow {
-    display: block;
-    position: absolute;
-    bottom: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(100%, 720px);
-    height: 60%;
-    z-index: 1;
-    background: radial-gradient(ellipse at center, rgba(232, 106, 63, 0.2), transparent 70%);
-    animation: fire-pulse 4s ease-in-out infinite;
+      linear-gradient(90deg, rgba(12, 8, 10, 0.85) 0%, rgba(12, 8, 10, 0.4) 50%, rgba(12, 8, 10, 0.7) 100%),
+      linear-gradient(to top, rgba(12, 8, 10, 0.45), transparent 30%);
   }
 
   .firefighter-inner {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 3rem;
     align-items: center;
     padding-top: 0;
@@ -720,7 +703,7 @@ a:hover {
 
   .firefighter-poster {
     justify-self: end;
-    width: min(100%, 300px);
+    width: min(100%, 280px);
     margin-inline: 0;
   }
 }
