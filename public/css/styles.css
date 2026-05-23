@@ -1496,10 +1496,6 @@ a:hover {
 }
 
 @media (max-width: 480px) {
-  .firefighter-video-wrap {
-    height: 115px;
-  }
-
   .hero-actions .btn-fire {
     width: 100%;
     max-width: 20rem;
