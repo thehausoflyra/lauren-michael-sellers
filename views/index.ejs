@@ -319,7 +319,7 @@
           <li class="merch-card">
             <div class="merch-image">
               <% if (item.badge) { %><span class="merch-badge"><%= item.badge %></span><% } %>
-              <img src="<%= item.image %>" alt="" loading="lazy" />
+              <img src="<%= item.image %>" alt="<%= item.name %>" loading="lazy" />
             </div>
             <div class="merch-body">
               <span class="merch-tag"><%= item.tag %></span>
