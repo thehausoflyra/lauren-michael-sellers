@@ -122,5 +122,61 @@
       "status": "announced"
     }
   ],
-  "tourNote": "Sample dates for layout — replace in data/site.json with confirmed shows."
+  "tourNote": "Sample dates for layout — replace in data/site.json with confirmed shows.",
+  "merch": {
+    "headline": "Wear the story",
+    "intro": "For independent artists, merch isn’t just swag — it helps fund studio time, touring, and the next song you haven’t heard yet. Every tee, hat, and mug directly supports the music.",
+    "shopNote": "Placeholder items for now — swap in your real store link when ready.",
+    "shopUrl": "#merch",
+    "items": [
+      {
+        "name": "Team Reba Red Chair Tee",
+        "price": "$32",
+        "tag": "The Voice",
+        "description": "Navy tee with a subtle red-chair emblem — for everyone who turned four chairs.",
+        "image": "/images/voice-reba.png",
+        "badge": "Fan favorite"
+      },
+      {
+        "name": "Wide-Brim Nashville Hat",
+        "price": "$28",
+        "tag": "Signature look",
+        "description": "Black felt-style hat for stage nights, songwriter rounds, and dramatic exits.",
+        "image": "/images/hero-portrait.png",
+        "badge": ""
+      },
+      {
+        "name": "Firefighter Flame Mug",
+        "price": "$18",
+        "tag": "New single",
+        "description": "Ceramic mug with flame wrap — pre-game your pre-save with something hot.",
+        "image": "/images/firefighter-cover.jpg",
+        "badge": "New"
+      },
+      {
+        "name": "“Oceans” Sunday Hoodie",
+        "price": "$48",
+        "tag": "Worship roots",
+        "description": "Oversized oatmeal hoodie with soft vintage wash — blind-audition energy.",
+        "image": "/images/live-performance.png",
+        "badge": ""
+      },
+      {
+        "name": "Emotional Support Mic Keychain",
+        "price": "$12",
+        "tag": "Tour essential",
+        "description": "Mini mic on a sturdy clip — for keys, bags, or nervous hands before go-time.",
+        "image": "/images/performance-voice.png",
+        "badge": ""
+      },
+      {
+        "name": "“I Am Not Okay” Tote",
+        "price": "$24",
+        "tag": "Storyteller",
+        "description": "Canvas tote, honest slogan on one side, LM Sellers script on the other.",
+        "image": "/images/take-me-back.png",
+        "badge": ""
+      }
+    ]
+  }
 }

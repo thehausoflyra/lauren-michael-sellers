@@ -33,7 +33,7 @@ if (header) {
 }
 
 const revealTargets = document.querySelectorAll(
-  ".release-card, .video-card, .highlight-list li, .tour-item, .firefighter-inner"
+  ".release-card, .video-card, .highlight-list li, .tour-item, .firefighter-inner, .merch-card"
 );
 if (revealTargets.length && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

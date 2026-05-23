@@ -30,6 +30,7 @@
         <li><a href="#voice">The Voice</a></li>
         <li><a href="#about">Story</a></li>
         <li><a href="#tour">Tour</a></li>
+        <li><a href="#merch">Merch</a></li>
         <li><a href="#listen">Listen</a></li>
         <li><a class="nav-cta" href="#connect">Connect</a></li>
       </ul>
@@ -300,6 +301,44 @@
         </p>
       </div>
     </section>
+
+    <% if (site.merch) { var m = site.merch; %>
+    <section class="section merch section--light" id="merch" aria-labelledby="merch-heading">
+      <div class="stained-divider stained-divider--top" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-header section-header--center">
+          <span class="label">Official Merch</span>
+          <h2 id="merch-heading"><%= m.headline %></h2>
+          <p class="merch-intro"><%= m.intro %></p>
+        </header>
+        <% if (m.shopNote) { %>
+        <p class="merch-note" role="note"><%= m.shopNote %></p>
+        <% } %>
+        <ul class="merch-grid">
+          <% m.items.forEach(function(item) { %>
+          <li class="merch-card">
+            <div class="merch-image">
+              <% if (item.badge) { %><span class="merch-badge"><%= item.badge %></span><% } %>
+              <img src="<%= item.image %>" alt="" loading="lazy" />
+            </div>
+            <div class="merch-body">
+              <span class="merch-tag"><%= item.tag %></span>
+              <h3><%= item.name %></h3>
+              <p><%= item.description %></p>
+              <div class="merch-footer">
+                <span class="merch-price"><%= item.price %></span>
+                <a class="btn btn-small merch-btn" href="<%= m.shopUrl %>">Coming soon</a>
+              </div>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+        <p class="merch-support">
+          Streaming is love — <strong>merch is fuel</strong>. Thank you for supporting an independent artist building something real in Nashville.
+        </p>
+      </div>
+    </section>
+    <% } %>
 
     <section class="section listen" id="listen" aria-labelledby="listen-heading">
       <div class="container listen-grid">
