@@ -71,6 +71,22 @@
 
     <% if (site.upcomingRelease) { var r = site.upcomingRelease; %>
     <section class="firefighter" id="firefighter" aria-labelledby="firefighter-heading">
+      <% if (r.fireVideo) { %>
+      <div class="firefighter-video-wrap" aria-hidden="true">
+        <video
+          class="firefighter-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="<%= r.coverArtLocal %>"
+        >
+          <source src="<%= r.fireVideo %>" type="video/mp4" />
+        </video>
+        <div class="firefighter-video-overlay"></div>
+      </div>
+      <% } %>
       <div class="firefighter-glow" aria-hidden="true"></div>
       <div class="container firefighter-inner">
         <div class="firefighter-copy">
@@ -83,7 +99,7 @@
         <a class="firefighter-poster" href="<%= r.presaveUrl %>" target="_blank" rel="noopener noreferrer" aria-label="Pre-save <%= r.title %> on Spotify">
           <figure class="firefighter-poster-card arch-frame">
             <img
-              src="<%= r.coverArtLocal || '/images/live-performance.png' %>"
+              src="<%= r.coverArtLocal %>"
               alt="<%= r.title %> — album art"
               width="280"
               height="280"
